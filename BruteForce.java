@@ -1,4 +1,5 @@
-public class BruteforceMatching {
+public class BruteForce {
+
   public static int search(String pat, String txt) {
     int M = pat.length();
     int N = txt.length();
@@ -9,12 +10,12 @@ public class BruteforceMatching {
           break;
         }
       if(j == M)
-        return i;
+        return i;   //found
     }
-    return N;
+    return N;       //not found
   }
 
-  //an alternative approach
+  //another approach
   public static int search2(String pat, String txt) {
     int i, j;
     int M = pat.length();
@@ -34,9 +35,17 @@ public class BruteforceMatching {
   }
 
   public static void main(String[] args) {
-    int n1, n2;
-    n1 = search("zhangl", "zhanglimian");
-    n2 = search2("zhangli", "zhanglimian");
-    StdOut.printf("n1: %d, n2: %d", n1, n2);
+    String pat = args[0];
+    String txt = args[1];
+    int offset = search(pat, txt);
+    if(offset == txt.length())
+      StdOut.println("not found.");
+    else
+      StdOut.println("found!");
+    StdOut.println("text:    " + txt);
+    StdOut.print("pattern: ");
+    for(int i = 0; i < offset; i++)
+      StdOut.print(" ");
+    StdOut.println(pat);
   }
 }
